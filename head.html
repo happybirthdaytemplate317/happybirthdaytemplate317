@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Dad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="screen1">
+    <h1>I am C.A.R.L. designed to guide you through your birthday. Directed - by your son. Proceed.</h1>
+    <button onclick="nextScreen()">Continue</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="screen2">
+    <h2>Let's take a moment to look back at 3 hand-picked moments where your best moments during the recent years.</h2>
+    <button onclick="startSlideshow()">Show Me</button>
+  </div>
+
+  <!-- Screen 3: Slideshow -->
+  <div class="screen" id="screen3">
+    <img id="slideImage" class="photo-slide" src="" alt="Memory">
+    <div class="caption" id="captionText"></div>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Screen 4: Songs -->
+  <div class="screen" id="screen4">
+    <h2>Now, some songs for the soul:</h2>
+    <div class="song-list">
+      <button onclick="playSong('song1')"> Click me?</button>
+      <button onclick="playSong('song2')"> or me..</button>
+      <button onclick="playSong('song3')"> maybe me!</button>
+      <button onclick="playSong('song4')"> all of us deserve a chance </button>
+      <button onclick="playSong('song5')">until it's all memories</button>
+    </div>
+
+    <audio id="song1" src="song1.mp3"></audio>
+    <audio id="song2" src="song2.mp3"></audio>
+    <audio id="song3" src="song3.mp3"></audio>
+    <audio id="song4" src="song4.mp3"></audio>
+    <audio id="song5" src="song5.mp3"></audio>
+    <audio id="theme" src="theme.mp3"></audio>
+
+    <button onclick="nextScreen()" class="continue-btn">Final Message</button>
+  </div>
+
+  <!-- Screen 5: Final -->
+  <div class="screen" id="screen5">
+    <div class="final-message">
+       Happy Birthday, Kibaba  
+      <br> "what we do in life echoes in eternity" - Maximus. It's true for you, too. You have done some of the best things ever. Real Life James Bond. I only hope you get to display your true power and fulfil your happiness. And personally, I get to prove myself back again.
+      Now, you're 2 years away from proving that you are a half centurion, haha!
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let currentScreen = 1;
+
+    const bondTheme = document.getElementById('theme');
+
+    function nextScreen() {
+      document.getElementById('screen' + currentScreen).classList.remove('active');
+      currentScreen++;
+      document.getElementById('screen' + currentScreen).classList.add('active');
+
+      // If screen 4 just activated, autoplay bond theme
+      if (currentScreen === 4) {
+        playSong('theme');
+      }
+    }
+
+    const slides = [
+      { src: 'photo1.jpg', caption: 'Axis Bank, best times' },
+      { src: 'photo2.jpg', caption: 'Family. Time Before Legacy' },
+      { src: 'photo3.jpg', caption: 'The profile photo I grew up seeing' }
+    ];
+
+    let currentSlide = 0;
+
+    function startSlideshow() {
+      nextScreen();
+      showSlide();
+    }
+
+    function showSlide() {
+      const slide = slides[currentSlide];
+      document.getElementById('slideImage').src = slide.src;
+      document.getElementById('captionText').innerText = slide.caption;
+    }
+
+    function nextSlide() {
+      currentSlide++;
+      if (currentSlide < slides.length) {
+        showSlide();
+      } else {
+        nextScreen(); // screen4 activates → bond theme plays automatically
+      }
+    }
+
+    function playSong(id) {
+      document.querySelectorAll('audio').forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      const song = document.getElementById(id);
+      if (song) {
+        song.play();
+      }
+    }
+  </script>
+</body>
+</html>

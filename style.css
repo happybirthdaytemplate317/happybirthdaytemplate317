@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.active {
+  display: flex !important;
+}
+
+button {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #ff5e57;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #ff3e3e;
+}
+
+.photo-slide {
+  max-width: 90vw;
+  max-height: 60vh;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  margin-bottom: 1rem;
+}
+
+.caption {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ccc;
+}
+
+.song-list button {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  background: linear-gradient(45deg, #4a00e0, #8e2de2);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  animation: floatPulse 4s ease-in-out infinite;
+}
+
+.song-list button:hover {
+  background: linear-gradient(45deg, #6a00e0, #a02de2);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(180, 80, 255, 0.8);
+}
+
+.song-list button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.2)
+  );
+  transform: skewX(-25deg);
+  animation: glint 2s infinite;
+}
+
+@keyframes glint {
+  0% { left: -75%; }
+  50% { left: 125%; }
+  100% { left: 125%; }
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+audio {
+  display: none;
+}
+
+.final-message {
+  font-size: 2rem;
+  animation: fadeIn 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Button style for screen 1 */
+#screen1 button {
+  background: linear-gradient(45deg, #ff6a00, #ee0979);
+  box-shadow: 0 0 20px rgba(255, 106, 0, 0.7);
+  animation: pulse 2s infinite;
+}
+
+/* Button style for screen 2 */
+#screen2 button {
+  background: linear-gradient(45deg, #1fa2ff, #12d8fa);
+  box-shadow: 0 0 15px rgba(18, 216, 250, 0.6);
+  animation: wiggle 1s infinite ease-in-out;
+}
+
+/* Button style for screen 3 */
+#screen3 button {
+  background: linear-gradient(45deg, #a1ffce, #faffd1);
+  color: #111;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  animation: riseFade 3s ease-out infinite alternate;
+}
+
+/* Button style for screen 4 */
+#screen4 button {
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+  box-shadow: 0 0 18px rgba(138, 43, 226, 0.7);
+}
+
+/* Button style for screen 5 */
+#screen5 .final-message {
+  animation: fadeInUp 2s ease forwards;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px #ff6a00; }
+  50% { transform: scale(1.05); box-shadow: 0 0 25px #ff6a00; }
+  100% { transform: scale(1); box-shadow: 0 0 10px #ff6a00; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1.5deg); }
+  75% { transform: rotate(-1.5deg); }
+}
+
+@keyframes riseFade {
+  from { transform: translateY(10px); opacity: 0.8; }
+  to { transform: translateY(-10px); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
